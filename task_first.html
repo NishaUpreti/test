@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <label>PAN No. :</label>
+        <label class="labeledit">ASASA9999W</label>
+        <input type="text" id="pantext" class="inputbox" style="display:none;">
+    </div>
+    <div>
+        <label>Card No. :</label>
+        <label class="labeledit">4569871236547896</label>
+        <input type="text" id="pantext" class="inputbox" style="display:none;">
+    </div>
+    <div>
+        <label>Expiry Date :</label>
+        <label class="labeledit">12</label><label class="labeledit">Nov</label>
+        <input type="text" id="pantext" class="inputbox" style="display:none;">
+    </div>
+    <div>
+        <button onclick="changelabel()" id="editbtn">Edit</button>
+        <button onclick="updatefun()" id="updatebtn" style="display:none">Update</button>
+    </div>
+    <div>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>S.no</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Mobile No.</th>
+                    <th>Email ID</th>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th><button>Add</button></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function changelabel() {
+            debugger
+
+            var labeltext = document.getElementsByClassName("labeledit");
+            for (var i = 0; i < labeltext.length; i++) {
+                labeltext[i].style.display = 'none';
+            }
+            var inputbox = document.getElementsByClassName("inputbox");
+            for (var j = 0; j < inputbox.length; j++) {
+                inputbox[j].style.display = 'inline-block';
+            }
+            document.getElementById("updatebtn").style.display = 'inline-block';
+            document.getElementById("editbtn").style.display = 'none';
+
+        }
+        function updatefun() {
+
+        }
+        var userdata = [{
+            "sno": "1",
+            "firstname": "nisha",
+            "lastname": "upreti",
+            "mobileno": 9761786277,
+            "emailid": "upretinisa@gmail.com",
+            "address": [
+                {
+                    "country": "India",
+                    "state": "uttarakhand",
+                    "city": "nainital"
+                }
+            ]
+        },
+        {
+            "sno": "2",
+            "firstname": "gargi",
+            "lastname": "kandpal",
+            "mobileno": 1537598426,
+            "emailid": "upretinisa@gmail.com",
+            "address": [
+                {
+                    "country": "UK",
+                    "state": "London",
+                    "city": "NewBerry"
+                }
+            ]
+        },
+        {
+            "sno": "3",
+            "firstname": "rohit",
+            "lastname": "upreti",
+            "mobileno": 7531598246,
+            "emailid": "upretinisa@gmail.com",
+            "address": [
+                {
+                    "country": "India",
+                    "state": "MP",
+                    "city": "Ujjain"
+                }
+            ]
+        },
+        {
+            "sno": "4",
+            "firstname": "bhagirathi",
+            "lastname": "upreti",
+            "mobileno": 9517534568,
+            "emailid": "upretinisa@gmail.com",
+            "address": [
+                {
+                    "country": "India",
+                    "state": "UP",
+                    "city": "Lukhnow"
+                }
+            ]
+        },
+        {
+            "sno": "4",
+            "firstname": "yogesh",
+            "lastname": "upreti",
+            "mobileno": 7418529635,
+            "emailid": "upretinisa@gmail.com",
+            "address": [
+                {
+                    "country": "India",
+                    "state": "Bihar",
+                    "city": "Chapra"
+                }
+            ]
+        },
+        {
+            "sno": "5",
+            "firstname": "Aru",
+            "lastname": "kandpal",
+            "mobileno": 7894563215,
+            "emailid": "upretinisa@gmail.com",
+            "address": [
+                {
+                    "country": "India",
+                    "state": "Sikkim",
+                    "city": "Gangtok"
+                }
+            ]
+        }];
+        // var parsedata = JSON.stringify(userdata);
+        for (var i = 0; i <= userdata.length; i++) {
+            $("table tbody").append('<tr><td>' + userdata[i].sno + '</td><td>' + userdata[i].firstname + '</td><td>' + userdata[i].lastname + '</td><td>' + userdata[i].mobileno + '</td><td>' + userdata[i].emailid + '</td><td>' + userdata[i].address[0].country + '</td><td>' + userdata[i].address[0].state + '</td><td>' + userdata[i].address[0].city + '</td><td><button>Edit</button><button>Delete</button></td><tr>');
+        }
+    </script>
+</body>
+
+</html>
