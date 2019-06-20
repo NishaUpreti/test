@@ -12,25 +12,38 @@
 </head>
 
 <body>
-    <div>
-        <label>PAN No. :</label>
-        <label class="labeledit">ASASA9999W</label>
-        <input type="text" id="pantext" class="inputbox" style="display:none;">
-    </div>
-    <div>
-        <label>Card No. :</label>
-        <label class="labeledit">4569871236547896</label>
-        <input type="text" id="pantext" class="inputbox" style="display:none;">
-    </div>
-    <div>
-        <label>Expiry Date :</label>
-        <label class="labeledit">12</label><label class="labeledit">Nov</label>
-        <input type="text" id="pantext" class="inputbox" style="display:none;">
-    </div>
-    <div>
-        <button onclick="changelabel()" id="editbtn">Edit</button>
-        <button onclick="updatefun()" id="updatebtn" style="display:none">Update</button>
-    </div>
+    <form name="formname">
+        <div>
+            <label>Email :</label>
+            <input type="text" id="emailtext" name="email" class="inputbox" style="display:none;">
+            <div id="emailreq"></div>
+            <div id="emailformate"></div>
+        </div>
+        <div>
+            <label>PAN No. :</label>
+            <label class="labeledit">ASASA9999W</label>
+            <input type="text" id="pantext" name="panno" class="inputbox" style="display:none;">
+            <div id="panreq"></div>
+        </div>
+        <div>
+            <label>Card No. :</label>
+            <label class="labeledit">4569871236547896</label>
+            <input type="text" id="pantext" name="cardno" class="inputbox" style="display:none;">
+            <div id="cardreq"></div>
+        </div>
+        <div>
+            <label>Expiry Date :</label>
+            <label class="labeledit">12</label><label class="labeledit">Nov</label>
+            <input type="text" id="pantext" name="expirydate" class="inputbox" style="display:none;">
+            <div id="expdatereq"></div>
+            <input type="text" id="pantext" name="expirymonth" class="inputbox" style="display:none;">
+            <div id="expmonreq"></div>
+        </div>
+        <div>
+            <button onclick="changelabel()" id="editbtn">Edit</button>
+            <button id="updatebtn" style="display:none" onclick="formvalidation()">Update</button>
+        </div>
+    </form>
     <div>
         <table border="1">
             <thead>
@@ -51,9 +64,34 @@
         </table>
     </div>
     <script>
-        function changelabel() {
+        function formvalidation() {
             debugger
+            var emailval = document.forms["formname"]["email"].value;
+            var pan = document.forms["formname"]["panno"].value;
+            var card = document.forms["formname"]["cardno"].value;
+            var expirydate = document.forms["formname"]["expirydate"].value;
+            var expirymonth = document.forms["formname"]["expirymonth"].value;
 
+            if (emailval == "" || emailval == null) {
+                document.getElementById("emailreq").innerHTML = "email is required";
+            }
+            if (emailval.value.indexOf("@", 0) < 0) {
+                document.getElementById("emailformate").innerHTML = "Please enter a valid e-mail address.";
+            }
+            if (pan == "" || pan == null) {
+                document.getElementById("panreq").innerHTML = "pan no is required";
+            }
+            if (card == "" || card == null) {
+                document.getElementById("cardreq").innerHTML = "card no is required";
+            }
+            if (expirydate == "" || expirydate == null) {
+                document.getElementById("expdatereq").innerHTML = "expirydate no is required";
+            }
+            if (expirymonth == "" || expirymonth == null) {
+                document.getElementById("expmonreq").innerHTML = "expirymonth no is required";
+            }
+        }
+        function changelabel() {
             var labeltext = document.getElementsByClassName("labeledit");
             for (var i = 0; i < labeltext.length; i++) {
                 labeltext[i].style.display = 'none';
@@ -62,10 +100,23 @@
             for (var j = 0; j < inputbox.length; j++) {
                 inputbox[j].style.display = 'inline-block';
             }
-            document.getElementById("updatebtn").style.display = 'inline-block';
+            var expirydate = document.getElementsByClassName("inputbox");
+            for (var k = 0; k < expirydate.length; k++) {
+                expirydate[k].style.display = 'inline-block';
+            }
+            var expirymonth = document.getElementsByClassName("inputbox");
+            for (var l = 0; l < expirymonth.length; l++) {
+                expirymonth[l].style.display = 'inline-block';
+            }
+            var emailvar = document.getElementsByClassName("inputbox");
+            for (var m = 0; m < emailvar.length; m++) {
+                emailvar[m].style.display = 'inline-block';
+            }
             document.getElementById("editbtn").style.display = 'none';
+            document.getElementById("updatebtn").style.display = 'inline-block';
 
         }
+        window.onload = changelabel;
         function updatefun() {
 
         }
