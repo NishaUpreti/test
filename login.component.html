@@ -1,40 +1,99 @@
-<section id="intro" class="clearfix">
-    <div class="login-form">
-        <form [formGroup]="loginform" (ngSubmit)="onSubmit()">
-            <h2 class="text-center">Log in</h2>
-            <div class="form-group">
-                <input type="text" class="form-control" formControlName="username" placeholder="Username"
-                    required="required" [ngClass]="{ 'is-invalid': username1.errors && username1.touched }">
-                <div *ngIf="username1.errors && (username1.dirty || username1.touched)" class="text-danger">
-                    <div *ngIf="username1.errors.required">User Name is required</div>
-                    <div *ngIf="username1.errors.minlength || username1.errors.maxlength">Username must be greater than
-                        8 character and less than 10
-                        character</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password" formControlName="password"
-                    required="required" [ngClass]="{ 'is-invalid': password1.errors && password1.touched }">
-                <div *ngIf="password1.errors && (password1.dirty || password1.touched)" class="text-danger">
-                    <div *ngIf="password1.errors.required">Password is Required</div>
-                    <div *ngIf="password1.errors.minlength || password1.errors.maxlength">
-                        Password must be greater than
-                        8 character and less than 10
-                        character
-                    </div>
-                    <div *ngIf="password1.errors.pattern">
-                        Password pattern should be match
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block">Log in</button>
-            </div>
-            <div class="clearfix">
-                <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
-                <a href="#" class="pull-right">Forgot Password?</a>
-            </div>
-        </form>
-        <p class="text-center"><a routerLink="/register">Create an Account</a></p>
+<div class="limiter">
+  <div class="container-login100">
+    <div class="wrap-login100">
+      <div class="login100-form-title" style="background-image: url(assets/images/bg-01.jpg);">
+        <span class="login100-form-title-1">
+          Sign In
+        </span>
+      </div>
+      <form class="login100-form validate-form" [formGroup]="loginform" (ngSubmit)="submitForm()">
+        <div class="wrap-input100 validate-input m-b-26">
+          <span class="label-input100">Username</span>
+          <input class="input100" type="text" value="{{usernameR}}" formControlName="username"
+            placeholder="Enter username">
+          <span *ngIf="username1.hasError('required')" class="text-danger">
+            Username is required
+          </span>
+          <span *ngIf="username1.hasError('maxlength')" class="text-danger">max length is 10</span>
+          <span *ngIf="username1.hasError('minlength')" class="text-danger">max length is 4</span>
+
+        </div>
+        <div class="wrap-input100 validate-input m-b-18">
+          <span class="label-input100">Password</span>
+          <input class="input100" type="text" value="{{psdR}}" placeholder="Enter password" formControlName="password">
+          <span *ngIf="password1.hasError('required')" class="text-danger">Password is required</span>
+          <span *ngIf="password1.hasError('pattern')" class="text-danger">Password must have 1 Uppercase 1 Lowercase 1
+            Special 1 Charactor 1
+            Numeric and maxlength 8</span>
+        </div>
+        <div class="flex-sb-m w-full p-tb-20">
+          <div class="contact100-form-checkbox">
+            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+            <label class="label-checkbox100" for="ckb1">
+              Remember me
+            </label>
+          </div>
+        </div>
+        <div class="container-login100-form-btn">
+          <button class="login100-form-btn m-r-10" routerLinkActive="active">
+            Login
+          </button>
+        </div>
+      </form>
     </div>
-</section>
+  </div>
+</div>
+<table border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Address
+    <tr rowspan="1">
+      <th>Street</th>
+      <th>Suit</th>
+      <th>City</th>
+      <th>Zipcode</th>
+    </tr>
+    </th>
+    <th>GEO
+      <tr rowspan="1">
+        <th>Lat</th>
+        <th>Lng</th>
+      </tr>
+    </th>
+    <th>Phone</th>
+    <th>WebSite</th>
+    <th>Company
+      <tr rowspan="1">
+        <th>Name</th>
+        <th>CatchPhrase</th>
+        <th>BS</th>
+      </tr>
+    </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of Employee">
+      <td>{{employee.id}}</td>
+      <td>{{employee.name}}</td>
+      <td>{{employee.username}}</td>
+      <td>{{employee.email}}</td>
+      <td>{{employee.address.street}}</td>
+      <td>{{employee.address.suit}}</td>
+      <td>{{employee.address.city}}</td>
+      <td>{{employee.address.zipcode}}</td>
+      <td>{{employee.geo.lat}}</td>
+      <td>{{employee.geo.lng}}</td>
+      <td>{{employee.phone}}</td>
+      <td>{{employee.phone}}</td>
+      <td>{{employee.website}}</td>
+      <!-- <td>{{employee.company.name}}</td>
+      <td>{{employee.company.catchPhrase}}</td>
+      <td>{{employee.company.bs}}</td> -->
+
+    </tr>
+  </tbody>
+</table>
